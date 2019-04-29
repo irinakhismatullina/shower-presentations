@@ -12,9 +12,9 @@
     <meta name="twitter:label2" content="Where and when" />
     <meta name="twitter:data2" content="27.04.2019, Tomsk, Russia" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="http://vmarkovtsev.github.io/devpro-2019-tomsk" />
-    <meta property="og:title" content="Personal code review assistants and Machine Learning on Source Code" />
-    <meta property="og:description" content="Introduction to Lookout - an open source framework for creating personal code review assistants on GitHub. Real world applications of Machine Learning on Source Code - automatic code style repair and typos correction." />
+    <meta property="og:url" content="http://irinakhismatullina.github.io/2019-vienna-pydays" />
+    <meta property="og:title" content="Typos correction inside code identifiers" />
+    <meta property="og:description" content="" />
     <meta property="og:image" content="https://vmarkovtsev.github.io/devpro-2019-tomsk/pictures/cover.png" />
     <meta property="twitter:image" content="https://vmarkovtsev.github.io/devpro-2019-tomsk/pictures/cover.png" />
     <link rel="stylesheet" href="node_modules/shower-ribbon/styles/styles.css">
@@ -214,8 +214,8 @@
     </style>
 
 	<section class="slide vista vista-cover" id="cover">
-		<h2>Personal code review assistants and Machine Learning on Source Code</h2>
-		<p class="black">Vadim Markovtsev<br><a href="https://twitter.com/vadimlearning">@vadimlearning</a></p>
+		<h2>Typos Correction Inside Code Identifiers</h2>
+		<p class="black">Irina Khismatullina<br><a href="https://twitter.com/irineekh">@irineekh</a></p>
         <p class="black"><a href="https://sourced.tech">source{d}</a><br>#MLonCode</p>
 		<style>
             .black {
@@ -265,7 +265,7 @@
 
     <section class="slide vista" id="plan">
         <h2>Plan</h2>
-        Origins&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;Lookout&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;SDK&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;#MLonCode
+        Intro&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;Code review&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;Typos correction&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;Typos correction inside code identifiers
         <style>
             #plan {
                 background-image: url("pictures/plan.png");
@@ -277,8 +277,135 @@
         </style>
     </section>
 
-    <section class="slide part">
-        <h2 class="shout">Origins</h2>
+    <section class="slide vista">
+        <h2>Code identifiers</h2>
+        <pre><code><span style="color: #cc8242">class</span> <span style="background-color: blue">ClassName</span>:</code>
+<code>    <span style="color: #bbb429">@classmethod</span></code>
+            <code>    <span style="color: #cc8242">def</span> <span style="color: #ffc66d; background-color: blue">function_name</span>(<span style="color: #94558D;">cls</span>) <span style="color: #f92672">-&gt;</span> str:</code>
+            <code>        <span style="background-color: blue">variable_name</span> = <span style="color: seagreen">"Hello, I'm ClassName object!"</span></code>
+            <code>        <span style="color: #cc8242">return</span> <span style="background-color: blue">variable_name</span></code></pre>
+    </section>
+
+    <section class="slide vista" id="tc">
+        <h2>Typos correction</h2>
+        <p style="font-size: 30px"><span style="color: orangered">funktion</span>&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;<span style="color: limegreen">function</span></p>
+        <p style="font-size: 30px"><span style="color: orangered">GetValu</span>&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;<span style="color: limegreen">GetValue</span></p>
+        <p style="font-size: 30px"><span style="color: orangered">str_lenght</span>&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;<span style="color: limegreen">str_length</span></p>
+        <style>
+            #tc span {
+                position: relative;
+                top: 2px;
+            }
+        </style>
+    </section>
+
+    <section class="slide vista">
+        <h2>Typos correction inside code identifiers</h2>
+        <pre><code><span style="color: #cc8242">class</span> <span style="background-color: blue">ClassName</span>:</code>
+<code>    <span style="color: #bbb429">@classmethod</span></code>
+            <code>    <span style="color: #cc8242">def</span> <span style="color: #ffc66d; background-color: blue">function_name</span>(<span style="color: #94558D;">cls</span>) <span style="color: #f92672">-&gt;</span> str:</code>
+            <code>        <span style="background-color: blue">variable_name</span> = <span style="color: seagreen">"Hello, I'm ClassName object!"</span></code>
+            <code>        <span style="color: #cc8242">return</span> <span style="background-color: blue">variable_name</span></code></pre>
+    </section>
+
+    <section class="slide">
+        <h2>Typos correction inside code identifiers</h2>
+        <pre><code><span style="color: #cc8242">class</span> <span style="background-color: orangered">ClasName</span>:</code>
+<code>    <span style="color: #bbb429">@classmethod</span></code>
+            <code>    <span style="color: #cc8242">def</span> <span style="color: #ffc66d">function_name</span>(<span style="color: #94558D;">cls</span>) <span style="color: #f92672">-&gt;</span> str:</code>
+            <code>        <span><span style="background-color: orangered">varyable_name</span></span> = <span style="color: seagreen">"Hello, I'm ClassName object!"</span></code>
+            <code>        <span style="color: #cc8242">return</span> <span style="background-color: orangered">varyable_name</span></code></pre>
+    </section>
+
+    <section class="slide">
+        <h2>Typos correction inside code identifiers</h2>
+        <pre><code><span style="color: #cc8242">class</span> <span style="background-color: green">ClassName</span>:</code>
+<code>    <span style="color: #bbb429">@classmethod</span></code>
+            <code>    <span style="color: #cc8242">def</span> <span style="color: #ffc66d">function_name</span>(<span style="color: #94558D;">cls</span>) <span style="color: #f92672">-&gt;</span> str:</code>
+            <code>        <span><span style="background-color: green">variable_name</span></span> = <span style="color: seagreen">"Hello, I'm ClassName object!"</span></code>
+            <code>        <span style="color: #cc8242">return</span> <span style="background-color: green">variable_name</span></code></pre>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout shout-small">When do we fix typos in code?</h2>
+    </section>
+
+    <section class="slide" id="stages">
+        <h2>Stages of development</h2>
+        <ol>
+            <li>Writing code</li>
+            <li><s>Compiling</s>*, <s>building</s>*, running, fixing code locally</li>
+            <li>Creating a Pool Request to add code to the project's repository</span></li>
+            <li>Code review</li>
+            <li>Merging new code with the whole project code</li>
+        </ol>
+        <p>* Long live Python</p>
+        <style>
+            #stages p {
+                position: absolute;
+                left: 100px;
+                top: 510px;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="stages_1">
+        <h2>Stages of development</h2>
+        <ol>
+            <li>Writing code - <span style="color: deepskyblue">developer</span></li>
+            <li><s>Compiling</s>*, <s>building</s>*, running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li>Creating a Pool Request to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
+            <li>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></li>
+            <li>Merging new code with the whole project code</li>
+        </ol>
+        <p>* Long live Python</p>
+        <style>
+            #stages_1 p {
+                position: absolute;
+                left: 100px;
+                top: 510px;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="stages_2">
+        <h2>Stages of development</h2>
+        <ol>
+            <li>Writing code - <span style="color: deepskyblue">developer</span></li>
+            <li><s>Compiling</s>*, <s>building</s>*, running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li>Creating a Pool Request to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
+            <li><mark>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></mark></li>
+            <li>Merging new code with the whole project code</li>
+        </ol>
+        <p>* Long live Python</p>
+        <style>
+            #stages_2 p {
+                position: absolute;
+                left: 100px;
+                top: 510px;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+
+    <section class="slide" id="stages_3">
+        <h2>Stages of development</h2>
+        <ol>
+            <li>Writing code - <span style="color: deepskyblue">developer</span></li>
+            <li><s>Compiling</s>*, <s>building</s>*, running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li><mark>Creating a Pool Request to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></mark></li>
+            <li>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></li>
+            <li>Merging new code with the whole project code</li>
+        </ol>
+        <p>* Long live Python</p>
+        <style>
+            #stages_3 p {
+                position: absolute;
+                left: 100px;
+                top: 510px;
+            }
+        </style>
     </section>
 
     <section class="slide">
