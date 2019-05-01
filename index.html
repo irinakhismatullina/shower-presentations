@@ -301,11 +301,11 @@
 
     <section class="slide vista">
         <h2>Typos correction inside code identifiers</h2>
-        <pre><code><span style="color: #cc8242">class</span> <span style="background-color: blue">ClassName</span>:</code>
+        <pre><code><span style="color: #cc8242">class</span> <span style="background-color: blue">ClasName</span>:</code>
 <code>    <span style="color: #bbb429">@classmethod</span></code>
             <code>    <span style="color: #cc8242">def</span> <span style="color: #ffc66d; background-color: blue">function_name</span>(<span style="color: #94558D;">cls</span>) <span style="color: #f92672">-&gt;</span> str:</code>
-            <code>        <span style="background-color: blue">variable_name</span> = <span style="color: seagreen">"Hello, I'm ClassName object!"</span></code>
-            <code>        <span style="color: #cc8242">return</span> <span style="background-color: blue">variable_name</span></code></pre>
+            <code>        <span style="background-color: blue">varyable_name</span> = <span style="color: seagreen">"Hello, I'm ClassName object!"</span></code>
+            <code>        <span style="color: #cc8242">return</span> <span style="background-color: blue">varyable_name</span></code></pre>
     </section>
 
     <section class="slide">
@@ -326,116 +326,172 @@
             <code>        <span style="color: #cc8242">return</span> <span style="background-color: green">variable_name</span></code></pre>
     </section>
 
-    <section class="slide">
+    <section class="slide part">
         <h2 class="shout shout-small">When do we fix typos in code?</h2>
     </section>
 
-    <section class="slide" id="stages">
+    <section class="slide">
         <h2>Stages of development</h2>
         <ol>
             <li>Writing code</li>
-            <li><s>Compiling</s>*, <s>building</s>*, running, fixing code locally</li>
-            <li>Creating a Pool Request to add code to the project's repository</span></li>
+            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally</li>
+            <li>Creating a Pool Request (PR) to add code to the project's repository</span></li>
             <li>Code review</li>
             <li>Merging new code with the whole project code</li>
         </ol>
-        <p>* Long live Python</p>
-        <style>
-            #stages p {
-                position: absolute;
-                left: 100px;
-                top: 510px;
-            }
-        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Stages of development</h2>
+        <ol>
+            <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally</li>
+            <li>Creating a PR to add code to the project's repository</li>
+            <li>Code review</li>
+            <li>Merging new code with the whole project code</li>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2>Stages of development</h2>
+        <ol>
+            <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
+            <li>Creating a PR to add code to the project's repository </li>
+            <li>Code review</li>
+            <li>Merging new code with the whole project code</li>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2>Stages of development</h2>
+        <ol>
+            <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
+            <li>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
+            <li>Code review</li>
+            <li>Merging new code with the whole project code</li>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2>Stages of development</h2>
+        <ol>
+            <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
+            <li>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
+            <li><mark>Code review</mark></li>
+            <li>Merging new code with the whole project code</li>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2>Code review</h2>
+        Colleagues/leads/maintainers/teachers check the new code and suggest changes:
+        <ul>
+            <li>Fix <mark>typos</mark> and mistakes in code</li>
+            <li>Improve code style</li>
+            <li>Make some optimizations (either in code text or related to computational complexity)</li>
+        </ul>
+        After the reviewers are happy, the code is merged to the codebase.
+    </section>
+
+    <section class="slide">
+        <h2>Code review</h2>
+        <ul>
+            <li><span style="color: limegreen">Filters out big part of bugs and problems before the code is added to the production</span></li>
+            <li><span style="color: limegreen">Without it it's almost impossible to maintain a good quality of code, especially in open source</span></li>
+            <li><span style="color: orangered">Takes *A LOT* of the reviewers' time</span></li>
+            <li><span style="color: orangered">Need to understand somebody else's code and read it carefully</span></li>
+            <li><span style="color: orangered">Boring - a lot of small repeating stupid mistakes like typos</span></li>
+        </ul>
     </section>
 
     <section class="slide" id="stages_1">
         <h2>Stages of development</h2>
         <ol>
-            <li>Writing code - <span style="color: deepskyblue">developer</span></li>
-            <li><s>Compiling</s>*, <s>building</s>*, running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li>Creating a Pool Request to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
+            <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
             <li>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></li>
             <li>Merging new code with the whole project code</li>
         </ol>
-        <p>* Long live Python</p>
-        <style>
-            #stages_1 p {
-                position: absolute;
-                left: 100px;
-                top: 510px;
-            }
-        </style>
     </section>
 
-    <section class="slide" id="stages_2">
+    <section class="slide">
+        <h2 class="shout shout-small">Solution: automate what we can!</h2>
+    </section>
+
+    <section class="slide">
         <h2>Stages of development</h2>
         <ol>
-            <li>Writing code - <span style="color: deepskyblue">developer</span></li>
-            <li><s>Compiling</s>*, <s>building</s>*, running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li>Creating a Pool Request to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
+            <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
+            <li>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
             <li><mark>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></mark></li>
             <li>Merging new code with the whole project code</li>
         </ol>
-        <p>* Long live Python</p>
-        <style>
-            #stages_2 p {
-                position: absolute;
-                left: 100px;
-                top: 510px;
-            }
-        </style>
     </section>
 
     <section class="slide">
-
-    <section class="slide" id="stages_3">
         <h2>Stages of development</h2>
         <ol>
-            <li>Writing code - <span style="color: deepskyblue">developer</span></li>
-            <li><s>Compiling</s>*, <s>building</s>*, running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li><mark>Creating a Pool Request to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></mark></li>
+            <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li><mark>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></mark></li>
             <li>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></li>
             <li>Merging new code with the whole project code</li>
         </ol>
-        <p>* Long live Python</p>
-        <style>
-            #stages_3 p {
-                position: absolute;
-                left: 100px;
-                top: 510px;
-            }
-        </style>
+    </section>
+
+
+    <section class="slide">
+        <h2 class="shout shout-small">Goal: filter as much typos as possible with automatic checks after the PR creation.</h2>
     </section>
 
     <section class="slide">
-        <h2 class="shout">Why does reviewing code suck?</h2>
-    </section>
-
-    <section class="slide">
-        <h2 class="shout shout-small">Need to understand somebody else's code.<br><span class="emoji">💩</span></h2>
-    </section>
-
-    <section class="slide">
-        <h2 class="shout shout-small">Need to have experience.<br><span class="emoji">🤓</span></h2>
-    </section>
-
-    <section class="slide">
-        <h2 class="shout shout-small">Need to have empathy.<br><span class="emoji">🤬</span></h2>
-    </section>
-
-    <section class="slide">
-        <h2 class="shout shout-small">Boring.<br><span class="emoji">😴</span></h2>
-    </section>
-
-    <section class="slide">
-        <h2>Why boring?</h2>
+        <h2>Automatic checks on PR creation</h2>
         <ul>
-            <li>Same faults again and again.</li>
-            <li>Minor, pedantic faults.</li>
-            <li>No immediate feedback.</li>
+            <li>Continuous integration - automatic build of the project and tests run</li>
+            <li>Static code analysis tools - check code against a set of defined rules</li>
+            <li><mark>src-d/lookout</mark> - assisted code review, run custom analyzers on Pool Requests</li>
         </ul>
     </section>
+
+    <section class="slide part">
+        <h2 class="shout">Lookout</h2>
+    </section>
+
+    <section class="slide">
+        <h2>Lookout analyzer</h2>
+        <ul>
+            <li>"Reviewer bot" - analyzes code files and leaves comments</li>
+            <li>Two methods: <code><span style="color: #ffc66d">train</span>()</code> and <code><span style="color: #ffc66d">analyze</span>()</code></li>
+            <li>Trains on the analyzed project repo, can be pretrained on a big collection of code</li>
+            <li>Can be run on a server, therefore allows for *complex ML models*</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Screen shot with analyzer's PR comments</h2>
+    </section>
+
+    <section class="slide">
+        <h2>High-level API</h2>
+        <pre><code><span style="color: #cc8242">class</span> MyAnalyzer(Analyzer):</code>
+<code>    <span style="color: #bbb429">@classmethod</span></code>
+<code>    <span style="color: #cc8242">def</span> <span style="color: #ffc66d">train</span>(<span style="color: #94558D;">cls</span>, <span style="color: #f92672">...</span>) <span style="color: #f92672">-&gt;</span> AnalyzerModel:</code>
+<code>        <span style="color: #808080"># ...</span></code>
+<code></code>
+<code>    <span style="color: #cc8242">def</span> <span style="color: #ffc66d">analyze</span>(<span style="color: #94558D;">self</span>, <span style="color: #f92672">...</span>) <span style="color: #f92672">-&gt;</span> [Comment]:</code>
+<code>        <span style="color: #808080"># do something with self.model</span></code></pre>
+    </section>
+
+    <section class="slide part">
+        <h2 class="shout shout-small">Typos correction</h2>
+    </section>
+
+    ============================================================================
 
     <section class="slide">
         <object data="pictures/review_comments.svg" type="image/svg+xml" class="fullslide-padding"></object>
@@ -450,10 +506,6 @@
 
     <section class="slide">
         <h2 class="shout">Σ≈4 million</h2>
-    </section>
-
-    <section class="slide">
-        <h2 class="shout shout">Solution: automate what we can.</h2>
     </section>
 
     <section class="slide">
@@ -603,14 +655,7 @@
         </ul>
     </section>
 
-    <section class="slide">
-        <h2>src-d/lookout-sdk-ml</h2>
-        <ul>
-            <li>High-level Python API</li>
-            <li>Stateful analyzers</li>
-            <li>Integrated with source{d} ml ecosystem</li>
-        </ul>
-    </section>
+
 
     <section class="slide" id="sdk-diagram">
         <img src="pictures/sdk.svg">
@@ -633,16 +678,7 @@
         <img src="pictures/rule_thumb.svg" class="lookout-diagram">
     </section>
 
-    <section class="slide">
-        <h2>High-level API</h2>
-        <pre><code><span style="color: #cc8242">class</span> MyAnalyzer(Analyzer):</code>
-<code>    <span style="color: #bbb429">@classmethod</span></code>
-<code>    <span style="color: #cc8242">def</span> <span style="color: #ffc66d">train</span>(<span style="color: #94558D;">cls</span>, <span style="color: #f92672">...</span>) <span style="color: #f92672">-&gt;</span> AnalyzerModel:</code>
-<code>        <span style="color: #808080"># ...</span></code>
-<code></code>
-<code>    <span style="color: #cc8242">def</span> <span style="color: #ffc66d">analyze</span>(<span style="color: #94558D;">self</span>, <span style="color: #f92672">...</span>) <span style="color: #f92672">-&gt;</span> [Comment]:</code>
-<code>        <span style="color: #808080"># do something with self.model</span></code></pre>
-    </section>
+
 
     <section class="slide">
         <h2>Behind the scenes</h2>
