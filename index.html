@@ -491,67 +491,112 @@
         <h2 class="shout shout-small">Typos correction</h2>
     </section>
 
+    <section class="slide">
+        <h2>Vocabulary</h2>
+        <ul>
+            <li>All classic typos correcting tools are based on a vocabulary.</li>
+            <li>With respect to the vocabulary typos can be out-of-vocabulary (typo-ed word is not inside the vocabulary) and in-vocabulary (typo-ed word is inside the vocabulary).</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Classical approach</h2>
+        Detection (oov or all) -> Candidates generation (fuzzy search) -> Candidates ranking (frequencies or models) -> Top-n corrections as a result
+    </section>
+
+    <section class="slide">
+        <h2>Detection</h2>
+        <ol>
+            <li>Check only out-of-vocabulary words in an input. Almost always used in classical approaches</li>
+            <li>Check all words. Seldom done: number of checked words increases dramatically.</li>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2>Typos correction in code</h2>
+        <ul>
+            <li>Identifiers and comments need to be checked</li>
+            <li>Vocabulary is difficult to compose</li>
+            <li>Identifiers need to be correctly tokenized before checking:
+                <code>get_value = GetValue = getvalue</code></li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>IDEs-built-in spellcheckers</h2>
+        <ul>
+            <li>Need to be very fast and lightweight.</li>
+            <li>Small restricted vocabulary.</li>
+            <li>OOV-detection -> Simple fuzzy search candidates generation -> No ranking</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Typos correction with src-d/lookout</h2>
+        <ul>
+            <li>Resources to use complex ML models</li>
+            <li>Huge dataset of code identifiers, already present in the world's codebase (49 mln unique identifiers with stats)</li>
+            <li>Identifiers are tokenized with a char-biLSTM model</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>TyposCorrector vocabulary</h2>
+        <ol>
+            <li>Common vocabulary is derived from the dataset of identifiers:
+        <ul>
+            <li>Contains most frequent tokens</li>
+            <li>Contains English words that were present in the dataset</li>
+            <li>Simple filtering based on edit distances between the tokens and frequencies</li>
+        </ul></li>
+            <li>All identifiers' tokens, present in the codebase during training, are added to the vocabulary</li>
+
+
+    </section>
+
+    <section class="slide">
+        <h2>Detection</h2>
+        <ul>
+            <li>Only new identifiers are checked</li>
+            <li>All tokens from the new identifiers are checked (even if they are inside the vocabulary)</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Candidates generation</h2>
+        <ol>
+            <li>For every checked token, find N closest on edit distance and most frequent vocabulary tokens, using <a href="https://github.com/ne3x7/pysymspell/">SymSpell</a></li>
+            <li>For every pair <code>(token, candidate)</code> generate a list of features, based on
+            the frequencies, embeddings, similarity and edit distance between the pair elements</li>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2>Candidates ranking</h2>
+        <ul>
+            <li>Logistic regression model on pairs <code>(token, candidate)</code>:
+                <ul><li><code>label=1</code> if the
+            candidate is the correct suggestion</li>
+                    <li><code>label=0</code> otherwise</li></ul></li>
+            <li>Candidates for the same <code>token</code> are grouped and sorted by the probability to get <code>label=1</code>, obtained from the log-reg model</li>
+            <li><a href="https://xgboost.readthedocs.io/en/latest/">XGBoost</a> is used for the logistic regression</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        
+    </section>
+
+    <section class="slide">
+        <h2>DL models for typos correction</h2>
+        <ul>
+            <li>Quite simple Machine Translation problem.</li>
+            <li>End-to-end training.</li>
+            <li>In char-based models - no dependency on a vocabulary.</li>
+        </ul>
+    </section>
+
     ============================================================================
-
-    <section class="slide">
-        <object data="pictures/review_comments.svg" type="image/svg+xml" class="fullslide-padding"></object>
-        <style>
-            .fullslide-padding {
-                width: 100%;
-                height: calc(100% - 50px);
-                object-fit: contain;
-            }
-        </style>
-    </section>
-
-    <section class="slide">
-        <h2 class="shout">Σ≈4 million</h2>
-    </section>
-
-    <section class="slide">
-        <h2>We do <span class="title-middle">*</span>not<span class="title-middle">*</span> want this</h2>
-        <figure class="fullwidth">
-            <img src="pictures/fail.png">
-            <figcaption>
-                <a class="source" href="https://github.com/lf-kailashraj/batch7crud/pull/41">Source.</a>
-            </figcaption>
-        </figure>
-        <style>
-            .title-middle {
-                vertical-align: sub;
-            }
-            .fullwidth > img, img.fullwidth {
-                width: 100%;
-                object-fit: contain;
-                max-height: 380px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .fullwidth > figcaption {
-                position: absolute;
-                font-size: smaller;
-                bottom: 50px;
-                right: 50px;
-                transform: rotate(-90deg);
-            }
-        </style>
-    </section>
-
-    <section class="slide vista vista-cover" id="weird">
-        <style>
-            #weird {
-                background-image: url("pictures/weird.jpg");
-            }
-        </style>
-    </section>
-
-    <section class="slide">
-        <h2 class="shout shout-small">Better to suggest less, but make no mistakes.</h2>
-    </section>
-
-    <section class="slide part">
-        <h2 class="shout">Lookout</h2>
-    </section>
 
     <section class="slide part vista" id="lookout-img">
         <style>
@@ -561,46 +606,6 @@
                 padding: 50px;
             }
         </style>
-    </section>
-
-    <section class="slide">
-        <h2>Architecture</h2>
-        <img src="pictures/lookout_arch.svg" class="lookout-diagram">
-        <style>
-            .lookout-diagram {
-                width: 800px;
-            }
-        </style>
-    </section>
-
-    <section class="slide">
-        <h2>Push event</h2>
-        <img src="pictures/lookout_comm_1.svg" class="lookout-diagram">
-    </section>
-
-    <section class="slide">
-        <h2>Push event</h2>
-        <img src="pictures/lookout_comm_2.svg" class="lookout-diagram">
-    </section>
-
-    <section class="slide">
-        <h2>Push event</h2>
-        <img src="pictures/lookout_comm_3.svg" class="lookout-diagram">
-    </section>
-
-    <section class="slide">
-        <h2>Push event</h2>
-        <img src="pictures/lookout_comm_4.svg" class="lookout-diagram">
-    </section>
-
-    <section class="slide">
-        <h2>Push event</h2>
-        <img src="pictures/lookout_comm_5.svg" class="lookout-diagram">
-    </section>
-
-    <section class="slide">
-        <h2>Push event</h2>
-        <img src="pictures/lookout_comm_6.svg" class="lookout-diagram">
     </section>
 
     <section class="slide">
@@ -619,16 +624,6 @@
     </section>
 
     <section class="slide">
-        <h2>Push event</h2>
-        <img src="pictures/lookout_comm_7.svg" class="lookout-diagram">
-    </section>
-
-    <section class="slide">
-        <h2>PR event</h2>
-        <img src="pictures/lookout_comm_8.svg" class="lookout-diagram">
-    </section>
-
-    <section class="slide">
         <h2>PR event</h2>
         <img src="pictures/lookout_comm_9.svg" class="lookout-diagram">
     </section>
@@ -641,21 +636,6 @@
             }
         </style>
     </section>
-
-    <section class="slide part">
-        <h2 class="shout">SDK</h2>
-    </section>
-
-    <section class="slide">
-        <h2>src-d/lookout-sdk</h2>
-        <ul>
-            <li>Single source of gRPC definitions</li>
-            <li>Low-level API: Go, Python</li>
-            <li>Low-level examples</li>
-        </ul>
-    </section>
-
-
 
     <section class="slide" id="sdk-diagram">
         <img src="pictures/sdk.svg">
@@ -672,13 +652,6 @@
             }
         </style>
     </section>
-
-    <section class="slide">
-        <h2>Rule of <span class="emoji">👍</span></h2>
-        <img src="pictures/rule_thumb.svg" class="lookout-diagram">
-    </section>
-
-
 
     <section class="slide">
         <h2>Behind the scenes</h2>
