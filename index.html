@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Personal code review assistants and Machine Learning on Source Code</title>
+	<title>Typos correction in code identifiers</title>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@vadimlearning" />
+    <meta name="twitter:creator" content="@irineekh" />
     <meta name="twitter:label1" content="Number of slides" />
-    <meta name="twitter:data1" content="55" />
+    <meta name="twitter:data1" content="52" />
     <meta name="twitter:label2" content="Where and when" />
-    <meta name="twitter:data2" content="27.04.2019, Tomsk, Russia" />
+    <meta name="twitter:data2" content="04.05.2019, Vienna, Austria" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="http://irinakhismatullina.github.io/2019-vienna-pydays" />
     <meta property="og:title" content="Typos correction inside code identifiers" />
@@ -31,8 +31,8 @@
 
 	<header class="caption">
 		<button type="button" id="fullscreen" title="Go fullscreen" onclick="fullscreen()"><i class="fa fa-arrows-alt"></i></button>
-		<h1>Personal code review assistants and Machine Learning on Source Code</h1>
-		<p>Vadim Markovtsev, <a href="https://sourced.tech">source{d}</a>.</p>
+		<h1>Typos correction in code identifiers</h1>
+		<p>Irina Khismatullina, <a href="https://sourced.tech">source{d}</a>.</p>
 	</header>
 
 	<style>
@@ -214,8 +214,8 @@
     </style>
 
 	<section class="slide vista vista-cover" id="cover">
-		<h2>Typos Correction Inside Code Identifiers</h2>
-		<p class="black">Irina Khismatullina<br><a href="https://twitter.com/irineekh">@irineekh</a></p>
+		<h2>Typos correction in code identifiers</h2>
+		<p class="black">Irina Khismatullina</p>
         <p class="black"><a href="https://sourced.tech">source{d}</a><br>#MLonCode</p>
 		<style>
             .black {
@@ -263,18 +263,14 @@
         </style>
     </section>
 
-    <section class="slide vista" id="plan">
+    <section class="slide vista">
         <h2>Plan</h2>
-        Intro&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;Code review&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;Typos correction&nbsp;&nbsp;<span>➙</span>&nbsp;&nbsp;Typos correction inside code identifiers
-        <style>
-            #plan {
-                background-image: url("pictures/plan.png");
-            }
-            #plan span {
-                position: relative;
-                top: 2px;
-            }
-        </style>
+        <ol>
+            <li>Intro</li>
+            <li>When do we correct typos in code identifiers</li>
+            <li>How do we correct typos in code identifiers</li>
+            <li>How can we get better</li>
+        </ol>
     </section>
 
     <section class="slide vista">
@@ -328,10 +324,16 @@
 
     <section class="slide part">
         <h2 class="shout shout-small">When do we fix typos in code?</h2>
+        <style>
+            .shout-small {
+                font-size: 70px !important;
+            }
+        </style>
     </section>
 
     <section class="slide">
         <h2>Stages of development</h2>
+        <img src="pictures/stages.png" id="stages">
         <ol>
             <li>Writing code</li>
             <li><s>Compiling</s>, <s>building</s>, running, fixing code locally</li>
@@ -339,13 +341,18 @@
             <li>Code review</li>
             <li>Merging new code with the whole project code</li>
         </ol>
+        <style>
+            #stages {
+                width: 100%;
+            }
+        </style>
     </section>
 
     <section class="slide">
         <h2>Stages of development</h2>
         <ol>
             <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally</li>
+            <li>Running, fixing code locally</li>
             <li>Creating a PR to add code to the project's repository</li>
             <li>Code review</li>
             <li>Merging new code with the whole project code</li>
@@ -356,7 +363,7 @@
         <h2>Stages of development</h2>
         <ol>
             <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
+            <li>Running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
             <li>Creating a PR to add code to the project's repository </li>
             <li>Code review</li>
             <li>Merging new code with the whole project code</li>
@@ -367,7 +374,7 @@
         <h2>Stages of development</h2>
         <ol>
             <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
+            <li>Running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
             <li>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
             <li>Code review</li>
             <li>Merging new code with the whole project code</li>
@@ -378,7 +385,7 @@
         <h2>Stages of development</h2>
         <ol>
             <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
+            <li>Running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
             <li>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
             <li><mark>Code review</mark></li>
             <li>Merging new code with the whole project code</li>
@@ -411,11 +418,27 @@
         <h2>Stages of development</h2>
         <ol>
             <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li>Running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
             <li>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
             <li>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></li>
             <li>Merging new code with the whole project code</li>
         </ol>
+    </section>
+
+    <section class="slide">
+        <img src="pictures/typos_issues.png" id="issues">
+        <style>
+            #issues {
+                background-color: white;
+                position: relative;
+                top: -81px;
+                left: -100px;
+                width: calc(100% + 200px);
+                height: calc(100% + 81px);
+                border: 0;
+                object-fit: contain;
+        }
+        </style>
     </section>
 
     <section class="slide">
@@ -426,7 +449,7 @@
         <h2>Stages of development</h2>
         <ol>
             <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
+            <li>Running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
             <li>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
             <li><mark>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></mark></li>
             <li>Merging new code with the whole project code</li>
@@ -437,16 +460,15 @@
         <h2>Stages of development</h2>
         <ol>
             <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li><s>Compiling</s>, <s>building</s>, running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
+            <li>Running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
             <li><mark>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></mark></li>
             <li>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></li>
             <li>Merging new code with the whole project code</li>
         </ol>
     </section>
 
-
     <section class="slide">
-        <h2 class="shout shout-small">Goal: filter as much typos as possible with automatic checks after the PR creation.</h2>
+        <h2 class="shout shout-small">Goal: filter as much typos as possible automatically on PR creation</h2>
     </section>
 
     <section class="slide">
@@ -454,12 +476,12 @@
         <ul>
             <li>Continuous integration - automatic build of the project and tests run</li>
             <li>Static code analysis tools - check code against a set of defined rules</li>
-            <li><mark>src-d/lookout</mark> - assisted code review, run custom analyzers on Pool Requests</li>
+            <li><mark>src-d/lookout</mark> - assisted code review, run custom analyzers on Pool Requests (open source)</li>
         </ul>
     </section>
 
     <section class="slide part">
-        <h2 class="shout">Lookout</h2>
+        <h2 class="shout shout-small">Lookout</h2>
     </section>
 
     <section class="slide">
@@ -467,13 +489,19 @@
         <ul>
             <li>"Reviewer bot" - analyzes code files and leaves comments</li>
             <li>Two methods: <code><span style="color: #ffc66d">train</span>()</code> and <code><span style="color: #ffc66d">analyze</span>()</code></li>
-            <li>Trains on the analyzed project repo, can be pretrained on a big collection of code</li>
-            <li>Can be run on a server, therefore allows for *complex ML models*</li>
+            <li>Trained on the analyzed project repo</li>
+            <li>Can be pretrained on a big collection of code</li>
+            <li>Can be run on a server, therefore allows for <span style="color: orange">*complex ML models*</span></li>
         </ul>
     </section>
 
-    <section class="slide">
-        <h2>Screen shot with analyzer's PR comments</h2>
+    <section class="slide vista" id="lookout">
+        <style>
+            #lookout {
+                background-image: url("pictures/lookout_comments.png");
+                background-color: white;
+            }
+        </style>
     </section>
 
     <section class="slide">
@@ -488,28 +516,21 @@
     </section>
 
     <section class="slide part">
-        <h2 class="shout shout-small">Typos correction</h2>
-    </section>
-
-    <section class="slide">
-        <h2>Vocabulary</h2>
-        <ul>
-            <li>All classic typos correcting tools are based on a vocabulary.</li>
-            <li>With respect to the vocabulary typos can be out-of-vocabulary (typo-ed word is not inside the vocabulary) and in-vocabulary (typo-ed word is inside the vocabulary).</li>
-        </ul>
+        <h2 class="shout shout-small">How do we fix typos in code identifiers?</h2>
     </section>
 
     <section class="slide">
         <h2>Classical approach</h2>
-        Detection (oov or all) -> Candidates generation (fuzzy search) -> Candidates ranking (frequencies or models) -> Top-n corrections as a result
-    </section>
-
-    <section class="slide">
-        <h2>Detection</h2>
-        <ol>
-            <li>Check only out-of-vocabulary words in an input. Almost always used in classical approaches</li>
-            <li>Check all words. Seldom done: number of checked words increases dramatically.</li>
-        </ol>
+        <img src="pictures/typos_correction.png" id="typos">
+        <ul>
+            <li>Based on a vocabulary of correct words</li>
+            <li>Candidates for correction - words from the vocabulary, close on the <a href="https://en.wikipedia.org/wiki/Edit_distance">edit distance</a> to the checked word</li>
+        </ul>
+        <style>
+            #typos {
+                width: 100%;
+            }
+        </style>
     </section>
 
     <section class="slide">
@@ -523,35 +544,60 @@
     </section>
 
     <section class="slide">
-        <h2>IDEs-built-in spellcheckers</h2>
+        <h2>Built-in-IDEs spellcheckers</h2>
         <ul>
-            <li>Need to be very fast and lightweight.</li>
-            <li>Small restricted vocabulary.</li>
-            <li>OOV-detection -> Simple fuzzy search candidates generation -> No ranking</li>
+            <li>Need to be very fast and lightweight</li>
+            <li>Primitive algorithms with low quality</li>
+            <li>Based on small restricted vocabulary</li>
         </ul>
     </section>
 
-    <section class="slide">
-        <h2>Typos correction with src-d/lookout</h2>
-        <ul>
-            <li>Resources to use complex ML models</li>
-            <li>Huge dataset of code identifiers, already present in the world's codebase (49 mln unique identifiers with stats)</li>
-            <li>Identifiers are tokenized with a char-biLSTM model</li>
-        </ul>
+    <section class="slide part">
+        <h2 class="shout shout-small">Typos correction with src-d/lookout</h2>
     </section>
 
     <section class="slide">
-        <h2>TyposCorrector vocabulary</h2>
+        <h2>Perks</h2>
+        <ul>
+            <li>Can go language agnostic thanks to source{d} <a href="https://github.com/bblfsh">Babelfish</a></li>
+            <li>Use of huge <a href="https://github.com/src-d/datasets/tree/master/Identifiers">dataset</a> of code identifiers, already present in the world's codebase (49 mln unique identifiers with stats)</li>
+            <li><a href="https://github.com/src-d/ml">src-d/ml</a> stack for code analysis (e.g identifiers are tokenized with a char-biLSTM model)</li>
+        </ul>
+<!--        <img src="pictures/success_kid_inv.png" id="strong">-->
+<!--        <style>-->
+<!--            #strong {-->
+<!--                position: absolute;-->
+<!--                right: 40px;-->
+<!--                bottom: 350px;-->
+<!--                width: 150px;-->
+<!--                opacity: 0.7;-->
+<!--            }-->
+<!--        </style>-->
+    </section>
+
+    <section class="slide vista" id="ml">
+        <p>We can use Machine Learning</p>
+        <style>
+            #ml {
+                background-image: url("pictures/plan.png");
+            }
+            p {
+                font-size: 80px;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Vocabulary</h2>
         <ol>
-            <li>Common vocabulary is derived from the dataset of identifiers:
+            <li>Universal vocabulary is derived from the dataset of identifiers:
         <ul>
             <li>Contains most frequent tokens</li>
             <li>Contains English words that were present in the dataset</li>
-            <li>Simple filtering based on edit distances between the tokens and frequencies</li>
+            <li>Simple filtering based on edit distances between the tokens and their frequencies</li>
         </ul></li>
-            <li>All identifiers' tokens, present in the codebase during training, are added to the vocabulary</li>
-
-
+            <li>All identifiers' tokens, present in the project during training, are added to the vocabulary</li>
+        </ol>
     </section>
 
     <section class="slide">
@@ -563,106 +609,105 @@
     </section>
 
     <section class="slide">
+        <h2>The correction pipeline</h2>
+        <img src="pictures/typos_analyzer.png" id="typos_analyzer">
+        <style>
+            #typos_analyzer {
+                width: 95%;
+                position: absolute;
+                left: 25px;
+                top: 200px;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Token embeddings</h2>
+        <ul>
+            <li>Train <a href="">Fasttext</a> model on a big sample (~100mln) from the identifiers dataset (frequencies distribution is maintained the same)</li>
+            <li>Fastext model allows for embeddings calculation for tokens, unseen during training</li>
+            <li>Use token embeddings for candidates ranking (for features generation)</li>
+        </ul>
+    </section>
+
+    <section class="slide">
         <h2>Candidates generation</h2>
         <ol>
             <li>For every checked token, find N closest on edit distance and most frequent vocabulary tokens, using <a href="https://github.com/ne3x7/pysymspell/">SymSpell</a></li>
-            <li>For every pair <code>(token, candidate)</code> generate a list of features, based on
-            the frequencies, embeddings, similarity and edit distance between the pair elements</li>
+            <li>Identifier to which the token belongs is considered a context and is taken into account</li>
+            <li>For every tuple <code>(identifier, token, candidate)</code> generate a list of features, based on
+            the frequencies, embeddings, similarity and edit distance between the elements</li>
         </ol>
     </section>
 
     <section class="slide">
         <h2>Candidates ranking</h2>
         <ul>
-            <li>Logistic regression model on pairs <code>(token, candidate)</code>:
-                <ul><li><code>label=1</code> if the
-            candidate is the correct suggestion</li>
+            <li>Logistic regression model on tuples <code>(identifier, token, candidate)</code>:
+                <ul><li><code>label=1</code> if the candidate is the correct suggestion</li>
                     <li><code>label=0</code> otherwise</li></ul></li>
-            <li>Candidates for the same <code>token</code> are grouped and sorted by the probability to get <code>label=1</code>, obtained from the log-reg model</li>
+            <li>Candidates for the same <code>token</code> are grouped and sorted by the probability to get <code>label=1</code></li>
             <li><a href="https://xgboost.readthedocs.io/en/latest/">XGBoost</a> is used for the logistic regression</li>
         </ul>
     </section>
 
     <section class="slide">
-        
-    </section>
-
-    <section class="slide">
-        <h2>DL models for typos correction</h2>
+        <h2>Suggestions</h2>
         <ul>
-            <li>Quite simple Machine Translation problem.</li>
-            <li>End-to-end training.</li>
-            <li>In char-based models - no dependency on a vocabulary.</li>
+            <li>If the most probable candidate is the checked token itself, the token is not corrected</li>
+            <li>Otherwise return the list of <code style="color: deepskyblue">n</code> most probable candidates</li>
         </ul>
     </section>
 
-    ============================================================================
+    <section class="slide">
+        <h2>Training and testing</h2>
+        <ul>
+            <li>Train and test datasets are sampled from the dataset of identifiers</li>
+            <li>Random artificial typos are made in some of the identifiers (insertions, deletes, swaps and replaces)</li>
+            <li><span style="color: yellow">Dataset itself contains typos, which were not all correctly filtered out</span></li>
+        </ul>
+    </section>
 
-    <section class="slide part vista" id="lookout-img">
-        <style>
-            #lookout-img {
-                background: url("pictures/lookout.png") black;
-                background-origin: content-box;
-                padding: 50px;
-            }
-        </style>
+    <section class="slide part">
+        <h2 class="shout shout-small">Results</h2>
     </section>
 
     <section class="slide">
-        <img src="pictures/magic.gif" class="fullslide">
-        <style>
-        .fullslide {
-            position: relative;
-            top: -81px;
-            left: -100px;
-            width: calc(100% + 200px);
-            height: calc(100% + 81px);
-            border: 0;
-            object-fit: contain;
-        }
-        </style>
+        <h2>Metrics</h2>
+        <ul>
+            <li><span style="color: greenyellow">Detection precision</span> - we should never suggest corrections for the correct tokens</li>
+            <li><span style="color: greenyellow">Detection recall</span> - find as many typos as possible</li>
+            <li><span style="color: greenyellow">Correction accuracy</span> - when we correct a token, we'd better correct it right</li>
+        </ul>
     </section>
 
     <section class="slide">
-        <h2>PR event</h2>
-        <img src="pictures/lookout_comm_9.svg" class="lookout-diagram">
+        <h2>Results on a token level</h2>
+        <ul>
+            <li><span style="color: greenyellow">Detection precision</span> - 98%</li>
+            <li><span style="color: greenyellow">Detection recall</span> - 82%</li>
+            <li><span style="color: greenyellow">Top3 correction accuracy</span> - 95%</li>
+        </ul>
+        Note: the test dataset is not a ground truth.
     </section>
 
     <section class="slide">
-        <h2 class="shout shout-small"><a href="https://docs.sourced.tech/lookout">docs.sourced.tech/lookout</a></h2>
-        <style>
-            .shout-small {
-                font-size: 70px !important;
-            }
-        </style>
-    </section>
-
-    <section class="slide" id="sdk-diagram">
-        <img src="pictures/sdk.svg">
-        <style>
-            #sdk-diagram > img {
-                width: 800px;
-            }
-            #sdk-diagram {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding-bottom: 81px;
-            }
-        </style>
+        <h2>Main problems</h2>
+        <ul>
+            <li>Strong dependency on the vocabulary (both in quality and the model's size)</li>
+            <li>Noisy dataset of identifiers</li>
+            <li>Lack of ground truth vocabulary</li>
+        </ul>
     </section>
 
     <section class="slide">
-        <h2>Behind the scenes</h2>
+        <h2>The worst</h2>
+        Complicated architecture strongly based on human knowledge:
         <ul id="behind-scenes">
-            <li>gRPC servers and clients</li>
-            <li>Pooling and threading</li>
-            <li>Database of trained models</li>
-            <li>Caches</li>
-            <li>Deferred training at first time</li>
-            <li>Retraining</li>
-            <li>Logging, metrics</li>
+            <li>Fasttext model</li>
+            <li>Symspell for correction candidates generation</li>
+            <li>Feature generation</li>
+            <li>XGBoost for ranking</li>
         </ul>
         <img src="pictures/jackie_chan.svg" class="jackie">
         <style>
@@ -672,229 +717,60 @@
             }
             .jackie {
                 position: absolute;
-                right: 100px;
-                bottom: 81px;
+                right: 40px;
+                bottom: 100px;
                 width: 400px;
                 opacity: 0.7;
             }
         </style>
     </section>
 
-    <section class="slide part">
-        <h2 class="shout">MLonCode</h2>
+    <section class="slide">
+        <h2 class="shout shout-small">We need something <span style="color: orange">simpler</span></h2>
     </section>
 
-    <section class="slide">
-        <h2>Naturalness hypothesis</h2>
-        <figure>
-            <blockquote>
-                <p>Because coding is an act of communication, one might expect large code corpora to have rich patterns, similar to natural
-                language, thus allowing software engineering tools to exploit probabilistic ML models.</p>
-            </blockquote>
-            <figcaption>Allamanis et.al.</figcaption>
-        </figure>
-    </section>
-
-    <section class="slide">
-        <h2>id2vec <a class="right" href="http://bit.ly/2UHo1B0">bit.ly/2UHo1B0</a></h2>
-        <img src="pictures/swivel_after.png" id="swivel">
-        <figure>
-            <blockquote>
-                <p>Send is to receive as push is to pop.</p>
-            </blockquote>
-            <figcaption>Markovtsev et.al.</figcaption>
-        </figure>
+    <section class="slide vista" id="dl">
         <style>
-            #swivel {
-                float: right;
+            #dl {
+                background-image: url("pictures/DL.png");
+                background-color: white;
             }
         </style>
+
     </section>
 
     <section class="slide">
-        <h2>AST GGNN <a class="right" href="http://bit.ly/2V1B8wo">bit.ly/2V1B8wo</a></h2>
-        <img src="pictures/ggnn_white.svg" class="fullwidth white">
-        <img src="pictures/ggnn_black.svg" class="fullwidth black">
-    </section>
-
-    <section class="slide">
-        <h2>code2vec <a class="right" href="https://code2vec.org">code2vec.org</a></h2>
-        <img src="pictures/code2vec_white.png" class="white fullwidth">
-        <img src="pictures/code2vec_black.png" class="black fullwidth">
-        <style>
-            h2 > a.right {
-                float: right;
-                font-family: "Source Sans Pro", sans-serif;
-            }
-        </style>
-    </section>
-
-    <section class="slide">
-        <h2>Code LSH <a class="right" href="http://bit.ly/2v7tKAS">bit.ly/2v7tKAS</a></h2>
-        <img src="pictures/jquery.png" class="fullwidth">
-    </section>
-
-    <section class="slide">
-        <h2 class="shout">Automatic format repair</h2>
-    </section>
-
-    <section class="slide">
-        <h2>Augmented token stream</h2>
-        <img src="pictures/vnodes.svg" id="vnodes" class="diagram diagram-right">
-        <pre><code>a = b * 2</code></pre>
-        <style>
-            .diagram {
-                height: 350px;
-            }
-            .diagram-right {
-                float: right;
-            }
-        </style>
-    </section>
-
-    <section class="slide">
-        <h2>Machine Learning</h2>
-        <img src="pictures/features.svg" class="diagram center">
-    </section>
-
-    <section class="slide">
-        <h2>Rules</h2>
-        <img src="pictures/rules.svg" class="diagram diagram-right">
+        <h2>TODO: DL models for typos correction</h2>
         <ul>
-            <li><code>a≤5 Λ b≤1 Λ <span class="oline">c</span> ⇒ α</code></li>
-            <li><code>a≤5 Λ 1&lt;b&lt;4 ⇒ β</code></li>
-            <li><code>5&lt;a&lt;10 Λ <span class="oline">c</span> ⇒ γ</code></li>
-            <li><code>a&gt;5 Λ c Λ b&gt;2 ⇒ α</code></li>
+            <li>Simple Machine Translation problem</li>
+            <li>End-to-end training</li>
+            <li>Char-based models - no dependency on a vocabulary</li>
+            <li>All info is encoded in the model's weights</li>
         </ul>
-        <style>
-            .oline {
-                text-decoration: overline;
-            }
-        </style>
     </section>
 
-    <section class="slide rules-opt">
-        <h2>Rules optimization</h2>
-        <pre><code><span class="bad">a&gt;5</span> Λ c Λ b&gt;2 Λ <span class="oline">d</span> Λ <span class="bad">a&gt;10</span> ⇒ α</code><span class="opt-desc">(merge)</span><br>
-<code><span class="good">a&gt;10</span> Λ c Λ <span class="bad">b&gt;2</span> Λ <span class="oline">d</span> ⇒ α</code><span class="opt-desc">(redundant)</span><br>
-<code>a&gt;10 Λ c Λ <span class="oline bad">d</span> ⇒ α</code><span class="opt-desc">(feature exclusion)</span><br>
-<code><span class="bad">a&gt;10 Λ c ⇒ α</span></code><span class="opt-desc">(confidence threshold)</span></pre>
-        <h4 class="rules-opt-result">Result</h4>
-        <ul>
-            <li>-40% ~ -50% less rules @93%</li>
-        </ul>
-        <style>
-            .rules-opt code {
-                display: inline-block !important;
-                width: auto !important;
-            }
-            .bad {
-                color: coral;
-            }
-            .good {
-                color: lightgreen;
-            }
-            .opt-desc {
-                float: right;
-                font-family: "Source Sans Pro", sans-serif;
-            }
-            .rules-opt-result {
-                margin-bottom: 0;
-            }
-        </style>
-    </section>
-
-    <section class="slide">
-        <h2 class="shout">Typos correction</h2>
-    </section>
-
-    <section class="slide">
-        <h2>Idea #1</h2>
-        <h2 class="shout shout-small">We trust existing code.</h2>
-    </section>
-
-    <section class="slide">
-        <h2>Idea #2</h2>
-        <h2 class="shout shout-small">Let's use the whole world's open source code.</h2>
-    </section>
-
-    <section class="slide">
-        <h2>Idea #3</h2>
-        <h2 class="shout shout-small">Piece-wise invariance: FooBar&nbsp;=&nbsp;bar_foo</h2>
-    </section>
-
-    <section class="slide">
-        <h2>Typo correction plan</h2>
-        <ol>
-            <li><a href="https://github.com/src-d/datasets/tree/master/Identifiers">Extract all identifiers in the open source world</a></li>
-            <li>Split token into parts with a <a href="https://arxiv.org/abs/1805.11651">char-biLSTM</a></li>
-            <li>Build the vocabulary</li>
-            <li>Train xgboost</li>
-        </ol>
-        <img src="pictures/iceberg.jpg" id="iceberg">
-        <style>
-            #iceberg {
-                position: absolute;
-                top: 0;
-                right: 0;
-                height: 100%;
-                object-fit: cover;
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, white 30%, white 100%);
-                mask-image: linear-gradient(to right, transparent 0%, white 30%, white 100%);
-            }
-            @media not print {
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%);
-                mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%);
-            }
-        </style>
-    </section>
-    
     <section class="slide part">
         <h2 class="shout">Summary</h2>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="summary">
         <h2>Summary</h2>
         <ul>
-            <li>Assisted code review is fun</li>
-            <li>Assisted code review + Lookout = ♥</li>
-            <li>#MLonCode is dope</li>
-            <li>ML can make code reviews less boring</li>
+            <li>Typos leak into the last stage of code development</li>
+            <li>Assisted code review + ML = ♥</li>
+            <li>Vocabulary is the main problem</li>
+            <li>DL model will nicely handle that</li>
         </ul>
     </section>
 
 	<section class="slide">
-        <h2 class="thank-you">Thank you</h2>
+        <h2 class="thank-you">Thank you!</h2>
         <ul class="no-bullets fa-bullets">
-            <li><i class="fa fa-envelope monofa" aria-hidden="true"></i><a href="mailto://vadim@sourced.tech">vadim@sourced.tech</a></li>
-            <li><i class="fa fa-twitter monofa" aria-hidden="true"></i><a href="https://twitter.com/vadimlearning">vadimlearning</a></li>
-            <li><i class="fa fa-github monofa" aria-hidden="true"></i><a href="https://github.com/src-d/lookout">github.com/src-d/lookout</a></li>
+            <li><i class="fa fa-envelope monofa" aria-hidden="true"></i><a href="mailto://irina@sourced.tech">irina@sourced.tech</a></li>
+            <li><i class="fa fa-github monofa" aria-hidden="true"></i><a href="https://github.com/src-d/lookout">lookout</a></li>
+            <li><i class="fa fa-github monofa" aria-hidden="true"></i><a href="https://github.com/src-d/style-analyzer">style-analyzer with typos correction</a></li>
             <li><i class="fa fa-rss monofa" aria-hidden="true"></i><a href="https://blog.sourced.tech">blog.sourced.tech</a></li>
-            <li><i class="fa fa-hashtag monofa" aria-hidden="true"></i><a href="https://github.com/src-d/awesome-machine-learning-on-source-code">MLonCode</a></li>
         </ul>
-        <div id="qrcode-container">
-            <img class="qrcode black" src="pictures/qrcode_black.svg">
-            <img class="qrcode white" src="pictures/qrcode_white.svg">
-            <a href="http://bit.ly/2Iv8nBC" id="bitly">bit.ly/2Iv8nBC</a>
-        </div>
-        <style>
-            #qrcode-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 380px;
-                position: absolute;
-                right: 81px;
-                top: 81px;
-            }
-            .qrcode {
-                height: 380px;
-            }
-            #bitly {
-                display: block;
-                font-size: 120%;
-            }
-        </style>
     </section>
 
 	<div class="progress"></div>
