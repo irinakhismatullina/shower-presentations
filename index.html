@@ -387,7 +387,7 @@
             <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
             <li>Running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
             <li>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
-            <li><mark>Code review</mark></li>
+            <li><span style="font-weight: 900">Code review</span></li>
             <li>Merging new code with the whole project code</li>
         </ol>
     </section>
@@ -396,7 +396,7 @@
         <h2>Code review</h2>
         Colleagues/leads/maintainers/teachers check the new code and suggest changes:
         <ul>
-            <li>Fix <mark>typos</mark> and mistakes in code</li>
+            <li>Fix <span style="font-weight: 900">typos</span> and mistakes in code</li>
             <li>Improve code style</li>
             <li>Make some optimizations (either in code text or related to computational complexity)</li>
         </ul>
@@ -451,7 +451,7 @@
             <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
             <li>Running, fixing code locally - <span style="color: deepskyblue">developer & IDE & tools</span></li>
             <li>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></li>
-            <li><mark>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></mark></li>
+            <li><span style="font-weight: 900">Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></span></li>
             <li>Merging new code with the whole project code</li>
         </ol>
     </section>
@@ -461,7 +461,7 @@
         <ol>
             <li>Writing code - <span style="color: deepskyblue">developer & IDE</span></li>
             <li>Running, fixing code locally - <span style="color: deepskyblue">developer & IDE</span></li>
-            <li><mark>Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></mark></li>
+            <li><span style="font-weight: 900">Creating a PR to add code to the project's repository - <span style="color: deepskyblue">automatic checks</span></span></li>
             <li>Code review - <span style="color: deepskyblue">colleagues, teachers, team leads</span></li>
             <li>Merging new code with the whole project code</li>
         </ol>
@@ -476,7 +476,7 @@
         <ul>
             <li>Continuous integration - automatic build of the project and tests run</li>
             <li>Static code analysis tools - check code against a set of defined rules</li>
-            <li><mark>src-d/lookout</mark> - assisted code review, run custom analyzers on Pool Requests (open source)</li>
+            <li><span style="font-weight: 900">src-d/lookout</span> - assisted code review, run custom analyzers on Pool Requests (open source)</li>
         </ul>
     </section>
 
@@ -491,7 +491,7 @@
             <li>Two methods: <code><span style="color: #ffc66d">train</span>()</code> and <code><span style="color: #ffc66d">analyze</span>()</code></li>
             <li>Trained on the analyzed project repo</li>
             <li>Can be pretrained on a big collection of code</li>
-            <li>Can be run on a server, therefore allows for <span style="color: orange">*complex ML models*</span></li>
+            <li>Can be run on a server, therefore allows for <span style="font-weight: 900">complex ML models</span></li>
         </ul>
     </section>
 
@@ -563,16 +563,6 @@
             <li>Use of huge <a href="https://github.com/src-d/datasets/tree/master/Identifiers">dataset</a> of code identifiers, already present in the world's codebase (49 mln unique identifiers with stats)</li>
             <li><a href="https://github.com/src-d/ml">src-d/ml</a> stack for code analysis (e.g identifiers are tokenized with a char-biLSTM model)</li>
         </ul>
-<!--        <img src="pictures/success_kid_inv.png" id="strong">-->
-<!--        <style>-->
-<!--            #strong {-->
-<!--                position: absolute;-->
-<!--                right: 40px;-->
-<!--                bottom: 350px;-->
-<!--                width: 150px;-->
-<!--                opacity: 0.7;-->
-<!--            }-->
-<!--        </style>-->
     </section>
 
     <section class="slide vista" id="ml">
@@ -593,10 +583,10 @@
             <li>Universal vocabulary is derived from the dataset of identifiers:
         <ul>
             <li>Contains most frequent tokens</li>
-            <li>Contains English words that were present in the dataset</li>
-            <li>Simple filtering based on edit distances between the tokens and their frequencies</li>
+            <li>Contains English words</li>
+            <li>Filtering based on edit distances</li>
         </ul></li>
-            <li>All identifiers' tokens, present in the project during training, are added to the vocabulary</li>
+            <li>All identifiers' tokens in the repo are added to the vocabulary</li>
         </ol>
     </section>
 
@@ -624,19 +614,18 @@
     <section class="slide">
         <h2>Token embeddings</h2>
         <ul>
-            <li>Train <a href="">Fasttext</a> model on a big sample (~100mln) from the identifiers dataset (frequencies distribution is maintained the same)</li>
-            <li>Fastext model allows for embeddings calculation for tokens, unseen during training</li>
-            <li>Use token embeddings for candidates ranking (for features generation)</li>
+            <li>Train <a href="">Fasttext</a> model on a sample (~100mln) from the identifiers dataset</li>
+            <li>Fastext is good for typoed tokens</li>
+            <li>Use token embeddings for candidates ranking</li>
         </ul>
     </section>
 
     <section class="slide">
         <h2>Candidates generation</h2>
         <ol>
-            <li>For every checked token, find N closest on edit distance and most frequent vocabulary tokens, using <a href="https://github.com/ne3x7/pysymspell/">SymSpell</a></li>
-            <li>Identifier to which the token belongs is considered a context and is taken into account</li>
-            <li>For every tuple <code>(identifier, token, candidate)</code> generate a list of features, based on
-            the frequencies, embeddings, similarity and edit distance between the elements</li>
+            <li>Find candidates with the <a href="https://github.com/ne3x7/pysymspell/">SymSpell</a></li>
+            <li>Identifier to which the token belongs - a context</li>
+            <li>Features: based on the frequencies, embeddings, similarity and edit distance between the elements</li>
         </ol>
     </section>
 
@@ -646,7 +635,7 @@
             <li>Logistic regression model on tuples <code>(identifier, token, candidate)</code>:
                 <ul><li><code>label=1</code> if the candidate is the correct suggestion</li>
                     <li><code>label=0</code> otherwise</li></ul></li>
-            <li>Candidates for the same <code>token</code> are grouped and sorted by the probability to get <code>label=1</code></li>
+            <li>Group by the token and sort</li>
             <li><a href="https://xgboost.readthedocs.io/en/latest/">XGBoost</a> is used for the logistic regression</li>
         </ul>
     </section>
@@ -654,8 +643,8 @@
     <section class="slide">
         <h2>Suggestions</h2>
         <ul>
-            <li>If the most probable candidate is the checked token itself, the token is not corrected</li>
-            <li>Otherwise return the list of <code style="color: deepskyblue">n</code> most probable candidates</li>
+            <li>Suggested token itsetf - not correcting</li>
+            <li>Otherwise return corrections</li>
         </ul>
     </section>
 
@@ -663,8 +652,8 @@
         <h2>Training and testing</h2>
         <ul>
             <li>Train and test datasets are sampled from the dataset of identifiers</li>
-            <li>Random artificial typos are made in some of the identifiers (insertions, deletes, swaps and replaces)</li>
-            <li><span style="color: yellow">Dataset itself contains typos, which were not all correctly filtered out</span></li>
+            <li>Random artificial typos</li>
+            <li><span style="font-weight: 900">Dataset itself contains typos</span></li>
         </ul>
     </section>
 
@@ -702,7 +691,7 @@
 
     <section class="slide">
         <h2>The worst</h2>
-        Complicated architecture strongly based on human knowledge:
+        <span style="font-weight: 900">Complicated architecture strongly based on human knowledge</span>:
         <ul id="behind-scenes">
             <li>Fasttext model</li>
             <li>Symspell for correction candidates generation</li>
@@ -740,7 +729,7 @@
     </section>
 
     <section class="slide">
-        <h2>TODO: DL models for typos correction</h2>
+        <h2>DL models for typos correction</h2>
         <ul>
             <li>Simple Machine Translation problem</li>
             <li>End-to-end training</li>
@@ -767,10 +756,21 @@
         <h2 class="thank-you">Thank you!</h2>
         <ul class="no-bullets fa-bullets">
             <li><i class="fa fa-envelope monofa" aria-hidden="true"></i><a href="mailto://irina@sourced.tech">irina@sourced.tech</a></li>
-            <li><i class="fa fa-github monofa" aria-hidden="true"></i><a href="https://github.com/src-d/lookout">lookout</a></li>
-            <li><i class="fa fa-github monofa" aria-hidden="true"></i><a href="https://github.com/src-d/style-analyzer">style-analyzer with typos correction</a></li>
+            <li><i class="fa fa-github monofa" aria-hidden="true"></i><a href="https://github.com/src-d/lookout">src-d/lookout</a></li>
+            <li><i class="fa fa-github monofa" aria-hidden="true"></i><a href="https://github.com/src-d/style-analyzer">src-d/style-analyzer</a></li>
             <li><i class="fa fa-rss monofa" aria-hidden="true"></i><a href="https://blog.sourced.tech">blog.sourced.tech</a></li>
         </ul>
+        <img src="pictures/force.gif" class="fullslide">
+        <style>
+        .fullslide {
+            position: relative;
+            top: -350px;
+            left: 450px;
+            width: 50%;
+            border: 0;
+            object-fit: contain;
+        }
+        </style>
     </section>
 
 	<div class="progress"></div>
